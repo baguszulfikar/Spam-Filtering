@@ -32,12 +32,13 @@ def predict():
     input_kata = str(request.form['message'])
     example_input = vectorizer.transform([input_kata])
     prediction = model.predict(example_input)
+    proba = model.predict_proba(example_input)
     if prediction == 1:
         output = 'SPAM!'
     else:
         output = 'NOT A SPAM!'
 
-    return render_template('index.html', prediction_text='Message is {}'.format(output))
+    return render_template('index.html', prediction_text='Message is {} with probability of being a spam is {}%'.format(output,(round(proba[0][1],4)*100)))
 
 # @app.route('/results',methods=['POST'])
 # def results():
