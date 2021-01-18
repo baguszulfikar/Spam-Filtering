@@ -40,15 +40,6 @@ def predict():
 
     return render_template('index.html', prediction_text='Message is {} with probability of being a spam is {}%'.format(output,(round(proba[0][1],4)*100)))
 
-# @app.route('/results',methods=['POST'])
-# def results():
-
-#     data = str(request.get_json(force=True))
-#     data_input = vectorizer.transform([data])
-#     prediction = model.predict(data_input)
-
-#     output = prediction[0]
-#     return jsonify(output)
 
 if __name__ == "__main__":
     app.run(debug=True)
